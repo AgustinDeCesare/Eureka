@@ -1,0 +1,29 @@
+import Eureka.*
+describe "Eureka Test" {
+	var hidrogeno = new Elemento()
+	var oxigeno = new Elemento()
+	var agua = new Compuesto()
+	var orbitalHidrogeno = new OrbitalNivel1()
+	var orbitalOxigeno1 = new OrbitalNivel1()
+	var orbitalOxigeno2 = new OrbitalNivelN()
+
+	fixture {
+	hidrogeno.nombre("Hidrogeno")
+	hidrogeno.simbolo("H")
+	hidrogeno.orbitales([orbitalHidrogeno])
+	oxigeno.nombre("Oxigeno")
+	oxigeno.simbolo("O")
+	oxigeno.orbitales([orbitalOxigeno1, orbitalOxigeno2])
+	orbitalHidrogeno.cantidadDeElectrones(1)
+	orbitalOxigeno1.cantidadDeElectrones(2)
+	orbitalOxigeno2.cantidadDeElectrones(6)
+	}
+	
+	test "Oxigeno no esta estable" {
+		assert.notThat(oxigeno.estaEstable())
+	}
+	test "Hidrogeno no esta estable"{
+		assert.notThat(hidrogeno.estaEstable())
+	}
+
+}
